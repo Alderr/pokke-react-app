@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Field, reduxForm, focus} from 'redux-form';
+import { Field, reduxForm, focus } from 'redux-form';
 import { Link } from 'react-router-dom';
 
 import Input from './Input';
 
-// import { login } from '../actions/loginActions';
+import { login } from '../actions/loginActions';
 import { required, nonEmpty } from '../validators';
 
 export class LoginForm extends Component {
@@ -15,7 +15,7 @@ export class LoginForm extends Component {
     onSubmit(values) {
         console.log('VALUES', values);
         console.log('BASE_URL',process.env.REACT_APP_BASE_URL);
-        // this.props.dispatch(login(values));
+        this.props.dispatch(login(values));
     }
 
     render() {
