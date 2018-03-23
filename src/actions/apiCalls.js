@@ -132,3 +132,32 @@ export const createApiKeyData = (dispatch, jwtToken) => {
             return err;
         });
 };
+
+export const getUserLogsData = (dispatch, jwtToken) => {
+    const query = `{
+        user {
+            logs {
+                _id
+                status
+                message
+                contact
+                subject
+                apiKey
+            }
+        }
+    }`;
+
+    return createAuthClient(jwtToken).query({ query: gql(query) })
+        .then((response => {
+            console.log('​---------------------------------------');
+            console.log('​exportgetApiKeys -> response', response);
+            console.log('​---------------------------------------');
+            return response.data.user;
+        }))
+        .catch((err) => {
+            console.log('​-----------------------------');
+            console.log('​exportgetApiKeys -> err', err);
+            console.log('​-----------------------------');
+            return err;
+        });
+};

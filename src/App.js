@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import LoginPage from './components/LoginPage';
+import MainView from './components/MainView';
 import ApiKeyPage from './components/ApiKeyPage';
 import LogsPage from './components/LogsPage';
 import PaymentPage from './components/PaymentPage';
@@ -18,9 +19,10 @@ class App extends Component {
                 <div className="App">
                     <Route exact path='/' component={Home} />
                     <Route exact path='/login' component={LoginPage} />
-                    <Route exact path='/apiKey' component={ApiKeyPage} />
-                    <Route exact path='/logs' component={LogsPage} />
-                    <Route exact path='/payment' component={PaymentPage} />
+                    <Route path='/account' component={MainView} />
+                    <Route exact path='/account/apiKeys' component={ApiKeyPage} />
+                    <Route exact path='/account/logs' component={LogsPage} />
+                    <Route exact path='/account/payment' component={PaymentPage} />
                 </div>
             </Router>
         );

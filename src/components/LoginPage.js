@@ -16,7 +16,7 @@ export class LoginPage extends Component {
     render() {
 
         if (this.props.loggedIn) {
-            return <Redirect to='/apiKey' />;
+            return <Redirect to='/account/apiKeys' />;
         }
 
         return(
