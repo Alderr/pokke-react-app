@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link, Route } from 'react-router-dom';
+import loginGate from './requires-login-gate';
 
-import { Link } from 'react-router-dom';
-
-export default class ApiKeyPage extends Component {
+export class ApiKeyPage extends Component {
     constructor(props){
         super(props);
     }
@@ -19,3 +20,12 @@ export default class ApiKeyPage extends Component {
         );
     }
 }
+
+const mapStateToProps = Reducers => {
+    return {
+        loggedIn: Reducers.loginReducer.loggedIn,
+        jwtToken: Reducers.loginReducer.jwtToken,
+    };
+};
+
+export default loginGate()(connect(mapStateToProps)(ApiKeyPage));

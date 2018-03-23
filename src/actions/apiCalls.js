@@ -73,6 +73,8 @@ export const LogIn = (dispatch, user) => {
         .catch(err => {
             console.log('​------------------------');
             console.log('​exportLogIn -> err', err);
+            console.log(err.response.errors); // GraphQL response errors
+            console.log(err.response.data); // Response data if available
             console.log('​------------------------');
             return err;
         });

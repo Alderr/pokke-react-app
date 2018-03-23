@@ -2,9 +2,9 @@ import * as apiCalls from './apiCalls';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
-export const loginSuccess = (userId) => ({
+export const loginSuccess = (jwtToken) => ({
     type: LOGIN_SUCCESS,
-    userId
+    jwtToken
 });
 
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
@@ -27,14 +27,13 @@ export const login = (user) => dispatch => {
             console.log('​-------------------');
             console.log('​response', response);
             console.log('​-------------------');
-            
+            return dispatch(loginSuccess(response.authToken));
         })
         .catch(err => {
             console.log('​-------------------');
-            console.log(err.response.errors); // GraphQL response errors
-            console.log(err.response.data); // Response data if available
+            console.log(err); 
             console.log('​-------------------');
-
+            return dispatch(loginFailure('Nope'));
         });
 
 };
