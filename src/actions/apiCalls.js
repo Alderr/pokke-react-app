@@ -7,7 +7,6 @@ import gql from 'graphql-tag';
 
 const url = process.env.REACT_APP_BASE_URL;
 
-
 const createClient = () => {    
     console.log('creating client?');
     const httpLink = createHttpLink({
@@ -80,4 +79,33 @@ export const LogIn = (dispatch, user) => {
         });
 };
 
+export const getApiKeysData = (dispatch, jwtToken) => {
+    const query = `{
+        user {
+            apiKeys {
+                key
+                usage
+                logs {
+                    date
+                    status
+                    contact
+                }
+            }
+        }
+    }`;
+
+    return createAuthClient(jwtToken).query({ query: gql(query) })
+        .then((response => {
+            console.log('​---------------------------------------');
+            console.log('​exportgetApiKeys -> response', response);
+            console.log('​---------------------------------------');
+            return response.data.user;
+        }))
+        .catch((err) => {
+            console.log('​-----------------------------');
+            console.log('​exportgetApiKeys -> err', err);
+            console.log('​-----------------------------');
+            
+        });
+};
 

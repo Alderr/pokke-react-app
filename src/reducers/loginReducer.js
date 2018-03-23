@@ -2,7 +2,6 @@
 const initialStore = {
     loggedIn: false,
     loading: false,
-    userId: '',
     jwtToken: '',
     message: ''
 };
