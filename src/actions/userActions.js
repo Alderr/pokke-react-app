@@ -39,6 +39,33 @@ export const getApiKeys = (jwtToken) => dispatch => {
 
 };
 
+export const CREATEAPIKEY_DONE = 'CREATEAPIKEY_DONE';
+
+export const createApiKey_Done = (data) => ({
+    type: CREATEAPIKEY_DONE,
+    data
+});
+
+export const createApiKey = (jwtToken) => dispatch => {
+    console.log('creating key.....');
+    dispatch(loading());
+    ApiCalls.createApiKeyData(dispatch, jwtToken)
+        .then((response) => {
+            console.log('​-------------------');
+            console.log('​action -> createApikeys -> response', response);
+            console.log('​-------------------');
+            dispatch(getApiKeys(jwtToken));
+        })
+        .catch((err) => {
+            console.log('​-------------------');
+            console.log('createApikeys -> err -> ​response', err);
+            console.log('​-------------------');
+        
+            dispatch(fetchFail('Fail: ', err.message));
+        });
+
+};
+
 
 
 

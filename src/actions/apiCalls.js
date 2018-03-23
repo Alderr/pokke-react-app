@@ -36,7 +36,7 @@ const createAuthClient = (jwtToken) => {
         return {
             headers: {
                 ...request.headers,
-                authorization: `Bearer ${jwtToken}`
+                authorization: jwtToken
             }
         };
     });
@@ -105,7 +105,30 @@ export const getApiKeysData = (dispatch, jwtToken) => {
             console.log('​-----------------------------');
             console.log('​exportgetApiKeys -> err', err);
             console.log('​-----------------------------');
-            
+            return err;
         });
 };
 
+
+export const createApiKeyData = (dispatch, jwtToken) => {
+    const query = `
+    mutation addApiKey {
+        addApiKey(input: "") {
+        _id
+        }
+    }`;
+
+    return createAuthClient(jwtToken).mutate({ mutation: gql(query) })
+        .then((response => {
+            console.log('​---------------------------------------');
+            console.log('CREATEAPIKEY -> response', response);
+            console.log('​---------------------------------------');
+            return response.data.user;
+        }))
+        .catch((err) => {
+            console.log('​-----------------------------');
+            console.log('CREATEAPIKEY -> err', err);
+            console.log('​-----------------------------');
+            return err;
+        });
+};
