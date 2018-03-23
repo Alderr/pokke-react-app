@@ -6,8 +6,9 @@ export default class Home extends Component {
     constructor(props){
         super(props);
     }
-
+    
     render() {
+        console.log(this.props);
         return(
             <section>
                 <h1>

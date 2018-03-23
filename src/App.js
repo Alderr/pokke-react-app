@@ -9,6 +9,8 @@ import LogsPage from './components/LogsPage';
 import PaymentPage from './components/PaymentPage';
 
 import './App.css';
+
+
 class App extends Component {
     render() {
         return (

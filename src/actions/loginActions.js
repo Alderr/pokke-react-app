@@ -1,4 +1,4 @@
-import { } from './apiCalls';
+import * as apiCalls from './apiCalls';
 
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 
@@ -22,7 +22,20 @@ export const login = (user) => dispatch => {
     console.log('​-----------');
     
     dispatch({type: LOGIN});
-    // return findUser(dispatch, user, loginSuccess, loginFailure);
+    apiCalls.LogIn(dispatch, user)
+        .then((response) => {
+            console.log('​-------------------');
+            console.log('​response', response);
+            console.log('​-------------------');
+            
+        })
+        .catch(err => {
+            console.log('​-------------------');
+            console.log(err.response.errors); // GraphQL response errors
+            console.log(err.response.data); // Response data if available
+            console.log('​-------------------');
+
+        });
 
 };
 
